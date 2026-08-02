@@ -30,6 +30,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import uk.lightman210567.mainframe.Blocks.ModBlocks;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Mainframe.MODID)
@@ -39,7 +40,8 @@ public class Mainframe {
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
+    // Call registration functions from here
     public Mainframe(IEventBus modEventBus, ModContainer modContainer) {
-        RegistrySetup.register(modEventBus);
+        ModBlocks.registerBlocks(modEventBus);
     }
 }

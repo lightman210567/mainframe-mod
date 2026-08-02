@@ -6,6 +6,7 @@ import net.neoforged.fml.ModContainer;
 import uk.lightman210567.mainframe.Blocks.ModBlockEntities;
 import uk.lightman210567.mainframe.Blocks.ModBlocks;
 import uk.lightman210567.mainframe.Blocks.ModBlockItems;
+import uk.lightman210567.mainframe.Items.ModItems;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Mainframe.MODID)
@@ -18,7 +19,8 @@ public class Mainframe {
     // Call registration functions from here
     public Mainframe(IEventBus modEventBus, ModContainer modContainer) {
         ModBlocks.registerBlocks(modEventBus);
-        ModBlockItems.registerItems(modEventBus);
+        ModBlockItems.registerBlockItems(modEventBus);
         ModBlockEntities.registerBlockEntities(modEventBus);
+        ModItems.registerItems(modEventBus);
     }
 }

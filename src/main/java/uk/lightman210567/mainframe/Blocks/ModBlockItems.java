@@ -18,7 +18,7 @@ public class ModBlockItems {
     // END BLOCK ITEM REGISTER
 
     // Finalise item registration
-    public static void registerItems(IEventBus modEventBus) {
+    public static void registerBlockItems(IEventBus modEventBus) {
         BLOCK_ITEMS.register(modEventBus);
     }
 }

@@ -13,7 +13,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Mainframe.MODID);
 
     // Register blocks here!
-    public static final DeferredBlock<Block> SERVER_BLOCK = BLOCKS.register(
+    public static final DeferredBlock<ServerBlock> SERVER_BLOCK = BLOCKS.register(
             "server_block",
             () -> new ServerBlock(BlockBehaviour.Properties.of())
 

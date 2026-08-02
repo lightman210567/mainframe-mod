@@ -30,6 +30,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import uk.lightman210567.mainframe.Blocks.ModBlockEntities;
 import uk.lightman210567.mainframe.Blocks.ModBlocks;
 import uk.lightman210567.mainframe.Items.ModItems;
 
@@ -45,5 +46,6 @@ public class Mainframe {
     public Mainframe(IEventBus modEventBus, ModContainer modContainer) {
         ModBlocks.registerBlocks(modEventBus);
         ModItems.registerItems(modEventBus);
+        ModBlockEntities.registerBlockEntities(modEventBus);
     }
 }

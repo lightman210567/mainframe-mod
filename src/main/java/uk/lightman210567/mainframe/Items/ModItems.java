@@ -11,6 +11,10 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Mainframe.MODID);
 
     // Register items here!
+    public static final DeferredItem<Item> HARD_DRIVE = ITEMS.register(
+            "hard_drive",
+            () -> new HardDrive(new Item.Properties())
+    );
     // END ITEM REGISTRY
 
     public static void registerItems(IEventBus modEventBus) {

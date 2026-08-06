@@ -9,6 +9,7 @@ on:
       - master
     types:
       - ready_for_review
+      - opened
 
 jobs:
   build:

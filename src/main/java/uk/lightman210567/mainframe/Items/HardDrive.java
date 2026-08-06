@@ -9,7 +9,7 @@ public class HardDrive extends Item {
         super(properties);
     }
 
-    public static final int size = 1;
+    // Find some clever way of defining size
 
     // When you want to interact with the hard drive, create a method for that interaction
     // This method will create an instance of the ItemStackContainer class

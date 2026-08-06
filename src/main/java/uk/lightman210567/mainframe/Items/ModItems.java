@@ -1,25 +1,28 @@
 package uk.lightman210567.mainframe.Items;
 
-import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import uk.lightman210567.mainframe.Blocks.ModBlocks;
 import uk.lightman210567.mainframe.Mainframe;
 
 public class ModItems {
-    // Define the items registry
+    // Define the item registry
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Mainframe.MODID);
 
     // Register items here!
-    // END ITEM REGISTER
+    public static final DeferredItem<Item> HARD_DRIVE = ITEMS.register(
+            "hard_drive",
+            () -> new HardDrive(new Item.Properties())
+    );
+    // END ITEM REGISTRY
 
-    // Register block items here!
-    public static final DeferredItem<BlockItem> SERVER_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("server_block", ModBlocks.SERVER_BLOCK);
-    // END BLOCK ITEM REGISTER
-
-    // Finalise item registration
     public static void registerItems(IEventBus modEventBus) {
         ITEMS.register(modEventBus);
     }
 }
+
+// THIS IS IMPORTANT
+// YOU HAVE TO IMPLEMENT A WAY TO LIMIT WHAT GOES INTO YOUR HARD DRIVES
+// OTHERWISE THERE IS POTENTIAL FOR "BOOK BANNING"
+// WHERE THE PACKET IS TOO BIG FOR THE CLIENT TO DESERIALIZE THE NBT

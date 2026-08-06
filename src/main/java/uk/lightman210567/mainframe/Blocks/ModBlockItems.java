@@ -15,6 +15,7 @@ public class ModBlockItems {
 
     // Register block items here!
     public static final DeferredItem<BlockItem> SERVER_BLOCK_ITEM = BLOCK_ITEMS.registerSimpleBlockItem("server_block", ModBlocks.SERVER_BLOCK);
+    public static final DeferredItem<BlockItem> INTERFACE_BLOCK_ITEM = BLOCK_ITEMS.registerSimpleBlockItem("interface_block", ModBlocks.INTERFACE_BLOCK);
     // END BLOCK ITEM REGISTER
 
     // Finalise item registration

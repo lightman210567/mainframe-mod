@@ -15,8 +15,8 @@ public class HardDrive extends Item {
     // Gets a list of all item stacks in the container
     // Takes the drive's ItemStack as an argument
     // UNTESTED
-    public NonNullList<ItemStack> getItems(ItemStack stack) {
-        ItemStackContainer container = new ItemStackContainer(stack, SIZE);
+    public NonNullList<ItemStack> getItems(ItemStack drive) {
+        ItemStackContainer container = new ItemStackContainer(drive, SIZE);
         NonNullList<ItemStack> items = container.getItems();
         return items;
     }
@@ -29,6 +29,17 @@ public class HardDrive extends Item {
         ItemStackContainer container = new ItemStackContainer(drive, SIZE);
         container.addItem(stack);
         container.setChanged();
+    }
+
+    // A method to extract an item from the drive at a given index
+    // drive is the ItemStack of the hard drive
+    // index is the index to remove the item at in the drive (similar to an address)
+    // UNTESTED
+    public ItemStack extract(ItemStack drive, int index) {
+        ItemStackContainer container = new ItemStackContainer(drive, SIZE);
+        ItemStack extracted = container.getItem(index);
+        container.removeItem(index, 1);
+        return extracted;
     }
 
     // Find some clever way of defining size

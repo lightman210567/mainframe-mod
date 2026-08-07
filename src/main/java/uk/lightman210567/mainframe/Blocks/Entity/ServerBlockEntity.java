@@ -18,7 +18,7 @@ public class ServerBlockEntity extends BlockEntity {
         super(SERVER_BLOCK_ENTITY.get(), pos, state);
     }
 
-    public static final int SLOT_COUNT = 1;
+    public static final int SLOT_COUNT = 4;
     public static final int STACK_SIZE = 1;
 
     // Create the ItemStackHandler
@@ -42,6 +42,8 @@ public class ServerBlockEntity extends BlockEntity {
                 // Insert
                 inventory.setStackInSlot(i, stack.copyWithCount(1));
                 return true;
+            } else {
+                continue;
             }
         }
         return false; // Defaults to returning false if the insertion fails

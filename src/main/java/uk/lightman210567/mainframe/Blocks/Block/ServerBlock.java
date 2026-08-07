@@ -72,6 +72,7 @@ public class ServerBlock extends Block implements EntityBlock {
                     if (!serverBlockEntity.inventory.getStackInSlot(i).isEmpty()) {
                         ItemStack extractedStack = serverBlockEntity.inventory.extractItem(i, 1, false);
                         player.setItemInHand(InteractionHand.MAIN_HAND, extractedStack);
+                        break;
                     }
                 }
             }

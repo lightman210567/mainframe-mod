@@ -39,6 +39,7 @@ public class HardDrive extends Item {
         ItemStackContainer container = new ItemStackContainer(drive, SIZE);
         ItemStack extracted = container.getItem(index);
         container.removeItem(index, 1);
+        container.setChanged();
         return extracted;
     }
 

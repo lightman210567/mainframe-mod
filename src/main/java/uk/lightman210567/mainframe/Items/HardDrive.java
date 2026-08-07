@@ -14,9 +14,10 @@ public class HardDrive extends Item {
 
     // Gets a list of all item stacks in the container
     // Takes the drive's ItemStack as an argument
-    public void getItems(ItemStack stack) {
+    public NonNullList<ItemStack> getItems(ItemStack stack) {
         ItemStackContainer container = new ItemStackContainer(stack, SIZE);
         NonNullList<ItemStack> items = container.getItems();
+        return items;
     }
 
     // Find some clever way of defining size

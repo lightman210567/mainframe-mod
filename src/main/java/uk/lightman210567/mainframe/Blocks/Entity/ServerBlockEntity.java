@@ -22,7 +22,7 @@ public class ServerBlockEntity extends BlockEntity {
     public static final int STACK_SIZE = 1;
 
     // Create the ItemStackHandler
-    public static final ItemStackHandler inventory = new ItemStackHandler(SLOT_COUNT) {
+    public final ItemStackHandler inventory = new ItemStackHandler(SLOT_COUNT) {
         @Override
         protected int getStackLimit(int slot, ItemStack stack) {
             return STACK_SIZE;

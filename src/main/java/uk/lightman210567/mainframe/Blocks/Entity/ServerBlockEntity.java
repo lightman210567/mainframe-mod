@@ -29,6 +29,24 @@ public class ServerBlockEntity extends BlockEntity {
         }
     };
 
+    // Reusable function to insert a drive into the server
+    // Assumes that the player's ability to insert the drive has already been checked
+    // Takes stack as an argument, which is the drive ItemStack to insert
+    // Returns true if insertion was successful, returns false if the insertion failed
+    public boolean insertDrive(ItemStack stack) {
+        // This will loop through each slot, and check if it is empty
+        // If the slot is empty, you can insert a drive in it
+        // If not, the drive can not be inserted
+        for (int i = 0; i < SLOT_COUNT; i++) {
+            if (inventory.getStackInSlot(i).isEmpty()) {
+                // Insert
+                inventory.setStackInSlot(i, stack.copy());
+                return true;
+            }
+        }
+        return false; // Defaults to returning false if the insertion fails
+    }
+
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);

@@ -1,6 +1,9 @@
 package uk.lightman210567.mainframe.Blocks.Block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -8,8 +11,11 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import org.apache.logging.log4j.core.jmx.Server;
 import uk.lightman210567.mainframe.Blocks.Entity.ServerBlockEntity;
+import uk.lightman210567.mainframe.Items.ModItems;
+import uk.lightman210567.mainframe.Mainframe;
 
 public class ServerBlock extends Block implements EntityBlock {
     public ServerBlock(BlockBehaviour.Properties properties) {
@@ -43,6 +49,25 @@ public class ServerBlock extends Block implements EntityBlock {
             // return null
             return null;
         }
+    }
+
+    @Override
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                                           Player player, InteractionHand hand, BlockHitResult hitResult) {
+        // Check that the block has an instance of the ServerBlockEntity block entity
+        if (level.getBlockEntity(pos) instanceof ServerBlockEntity serverBlockEntity) {
+            // Check that the item the player is holding is a hard drive
+            if (stack.getItem() == ModItems.HARD_DRIVE.asItem()) {
+                // the insertDrive method returns a boolean; true for success; false for failure
+                // This if statement checks that the insertion was a success before decrementing the stack
+                if (serverBlockEntity.insertDrive(stack)) {
+                    stack.shrink(1);
+                }
+            } else if (stack.isEmpty()) {
+
+            }
+        }
+        return ItemInteractionResult.SUCCESS;
     }
 
     // You are going to need to write a method that checks all slots for disks

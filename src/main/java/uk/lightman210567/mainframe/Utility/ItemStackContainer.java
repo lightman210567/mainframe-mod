@@ -9,7 +9,7 @@ public class ItemStackContainer extends SimpleContainer {
     protected final ItemStack stack;
 
     // the stack argument should be the ItemStack of the item the container is attached to
-    // eg if the container is for a disk item, you would pass the disk's ItemStack in
+    // e.g. if the container is for a disk item, you would pass the disk's ItemStack in
     // the slotCount argument is the size of the container, measured in slots
     public ItemStackContainer(ItemStack stack, int slotCount) {
         super(slotCount);

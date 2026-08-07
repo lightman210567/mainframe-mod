@@ -63,8 +63,17 @@ public class ServerBlock extends Block implements EntityBlock {
                 if (serverBlockEntity.insertDrive(stack)) {
                     stack.shrink(1);
                 }
+            // Or, if the player hand is empty, extract a drive
             } else if (stack.isEmpty()) {
-
+                // loop through each slot, starting with the last
+                // the idea being I want to extract the last drive in the server each time
+                // this also checks if the slot is NOT empty
+                for (int i = (ServerBlockEntity.SLOT_COUNT - 1); i >= 0; i--) {
+                    if (!serverBlockEntity.inventory.getStackInSlot(i).isEmpty()) {
+                        ItemStack extractedStack = serverBlockEntity.inventory.extractItem(i, 1, false);
+                        player.setItemInHand(InteractionHand.MAIN_HAND, extractedStack);
+                    }
+                }
             }
         }
         return ItemInteractionResult.SUCCESS;

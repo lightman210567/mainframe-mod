@@ -40,7 +40,7 @@ public class ServerBlockEntity extends BlockEntity {
         for (int i = 0; i < SLOT_COUNT; i++) {
             if (inventory.getStackInSlot(i).isEmpty()) {
                 // Insert
-                inventory.setStackInSlot(i, stack.copy());
+                inventory.setStackInSlot(i, stack.copyWithCount(1));
                 return true;
             }
         }

@@ -1,5 +1,6 @@
 package uk.lightman210567.mainframe.Items;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import uk.lightman210567.mainframe.Utility.ItemStackContainer;
@@ -7,6 +8,15 @@ import uk.lightman210567.mainframe.Utility.ItemStackContainer;
 public class HardDrive extends Item {
     public HardDrive(Properties properties) {
         super(properties);
+    }
+
+    public static final int SIZE = 1;
+
+    // Gets a list of all item stacks in the container
+    // Takes the drive's ItemStack as an argument
+    public void getItems(ItemStack stack) {
+        ItemStackContainer container = new ItemStackContainer(stack, SIZE);
+        NonNullList<ItemStack> items = container.getItems();
     }
 
     // Find some clever way of defining size

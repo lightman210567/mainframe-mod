@@ -17,6 +17,8 @@ import uk.lightman210567.mainframe.Blocks.Entity.ServerBlockEntity;
 import uk.lightman210567.mainframe.Items.ModItems;
 import uk.lightman210567.mainframe.Mainframe;
 
+import java.util.ArrayList;
+
 public class ServerBlock extends Block implements EntityBlock {
     public ServerBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -33,15 +35,15 @@ public class ServerBlock extends Block implements EntityBlock {
     // This method gets a list of disks in the server
     // It takes the position of the server block and the level as parameters
     // level should come from a player interaction further upstream
-    public ItemStack[] getDisksInServer(BlockPos pos, Level level) {
+    public ArrayList<ItemStack> getDisksInServer(BlockPos pos, Level level) {
         // Check that the block is really has an instance of the server block entity
         if (level.getBlockEntity(pos) instanceof ServerBlockEntity serverBlockEntity) {
-            ItemStack[] drives = new ItemStack[ServerBlockEntity.SLOT_COUNT];
+            ArrayList<ItemStack> drives = new ArrayList<>(ServerBlockEntity.SLOT_COUNT);
 
             // Loop through every stack in the inventory, and add its drive to the drives array
             for (int i = 0; i < ServerBlockEntity.SLOT_COUNT; i++) {
                 ItemStack drive = serverBlockEntity.inventory.getStackInSlot(i);
-                drives[i] = drive;
+                drives.set(i, drive);
             }
             return drives;
         } else {

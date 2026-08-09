@@ -25,4 +25,12 @@ public class InterfaceBlock extends Block {
     // gets back to the correct disk
     // otherwise items will get duplicated
 
+    // McPlan:
+    // Each server will combine the inventories of its disks into one inventory
+    // The server will generate an index
+    // The index maps each item stack in the combined inventory into its disk and slot
+    // The index will be stored in an array,
+    // where the ID in the array is the slot in the combined inventory
+    // and the entry contains a drive number and slot number
+
 }

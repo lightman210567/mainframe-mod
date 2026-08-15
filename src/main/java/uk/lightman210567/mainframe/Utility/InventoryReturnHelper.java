@@ -9,7 +9,8 @@ public class InventoryReturnHelper {
     public final NonNullList<ItemStack> inventory;
     public final LinkedHashMap<ItemStack, Integer> map;
 
-    public void InventoryReturnHelper() {
-
+    public InventoryReturnHelper(NonNullList<ItemStack> inventory, LinkedHashMap<ItemStack, Integer> map) {
+        this.inventory = inventory;
+        this.map = map;
     }
 }

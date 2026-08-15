@@ -33,4 +33,37 @@ public class InterfaceBlock extends Block {
     // where the ID in the array is the slot in the combined inventory
     // and the entry contains a drive number and slot number
 
+    // McPlan 2.0:
+    //
+    // GETTING SERVER INVENTORY
+    //
+    // 1)
+    // Each server will determine its slot capacity
+    // And use this to generate an "address range" of usable slots
+    // 2)
+    // The server will create an instance of InventoryReturnHelper
+    // Containing the following:
+    // - A map (type TBC) that maps ItemStack(s) to their drive object
+    // - a NonNullList of type ItemStack (to act as an inventory)
+    // 3a)
+    // The server will loop through each drive object it contains
+    // 3b)
+    // The server will loop through each item in the drive
+    // Adding the ItemStack into the InventoryReturnHelper's inventory
+    // Adding the driveID and the stack type to the map
+    // 4)
+    // The server will return the instance of the InventoryReturnHelper
+    //
+    // COMBINING SERVERS
+    // TBC - TO PLAN
+
+    // PLANNED REFACTORS
+    //
+    // - Remove the interface block
+    //      It can be programmed in a later mod version
+    //      However it is unnecessarily complex to do graph theory for an alpha
+    // - Implement an interface item
+    //      This interface item will be able to acess the inventory of a server
+    //      Eliminating the need for complex ways to detect servers on the network
+    //      This will likely need a menu of some kind
 }

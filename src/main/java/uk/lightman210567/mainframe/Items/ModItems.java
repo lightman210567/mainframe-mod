@@ -15,6 +15,11 @@ public class ModItems {
             "hard_drive",
             () -> new HardDrive(new Item.Properties())
     );
+
+    public static final DeferredItem<Item> INTERFACE_ITEM = ITEMS.register(
+            "interface_item",
+            () -> new InterfaceItem(new Item.Properties())
+    );
     // END ITEM REGISTRY
 
     public static void registerItems(IEventBus modEventBus) {

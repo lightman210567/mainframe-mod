@@ -1,11 +1,9 @@
 package uk.lightman210567.mainframe.Blocks;
 
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import uk.lightman210567.mainframe.Blocks.Block.InterfaceBlock;
 import uk.lightman210567.mainframe.Blocks.Block.ServerBlock;
 import uk.lightman210567.mainframe.Mainframe;
 
@@ -18,11 +16,6 @@ public class ModBlocks {
             "server_block",
             () -> new ServerBlock(BlockBehaviour.Properties.of())
 
-    );
-
-    public static final DeferredBlock<InterfaceBlock> INTERFACE_BLOCK = BLOCKS.register(
-            "interface_block",
-            () -> new InterfaceBlock(BlockBehaviour.Properties.of())
     );
     // END BLOCK REGISTER
 

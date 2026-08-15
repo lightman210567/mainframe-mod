@@ -45,6 +45,7 @@ public class InterfaceBlock extends Block {
     // Containing the following:
     // - A map (type TBC) that maps ItemStack(s) to their drive object
     // - a NonNullList of type ItemStack (to act as an inventory)
+    // - A start address and for the inventory
     // 3a)
     // The server will loop through each drive object it contains
     // 3b)
@@ -63,7 +64,7 @@ public class InterfaceBlock extends Block {
     //      It can be programmed in a later mod version
     //      However it is unnecessarily complex to do graph theory for an alpha
     // - Implement an interface item
-    //      This interface item will be able to acess the inventory of a server
+    //      This interface item will be able to access the inventory of a server
     //      Eliminating the need for complex ways to detect servers on the network
     //      This will likely need a menu of some kind
 }

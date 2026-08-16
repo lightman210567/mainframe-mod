@@ -5,12 +5,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import uk.lightman210567.mainframe.Utility.ItemStackContainer;
 
+import java.util.Random;
+
 public class HardDrive extends Item {
     public HardDrive(Properties properties) {
         super(properties);
     }
 
     public static final int SIZE = 1;
+
+    // Generate a random ID for the hard drive
+    private static final Random rand = new Random();
+    public static final int DRIVE_ID = rand.nextInt();
 
     // Gets a list of all item stacks in the container
     // Takes the drive's ItemStack as an argument

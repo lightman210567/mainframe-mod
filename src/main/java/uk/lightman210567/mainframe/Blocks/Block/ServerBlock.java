@@ -14,10 +14,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.apache.logging.log4j.core.jmx.Server;
 import uk.lightman210567.mainframe.Blocks.Entity.ServerBlockEntity;
+import uk.lightman210567.mainframe.Items.HardDrive;
 import uk.lightman210567.mainframe.Items.ModItems;
 import uk.lightman210567.mainframe.Mainframe;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class ServerBlock extends Block implements EntityBlock {
     public ServerBlock(BlockBehaviour.Properties properties) {
@@ -51,6 +53,24 @@ public class ServerBlock extends Block implements EntityBlock {
             // return null
             return null;
         }
+    }
+
+    // This method will get the combined inventory of the server
+    // It takes the position of the server block and the level as parameters
+    // these parameters should come from a player interaction further upstream
+    public LinkedHashMap<ItemStack, Integer> getServerInventory(BlockPos pos, Level level) {
+        // Checks the block has an instance of the server block entity
+        if (level.getBlockEntity(pos) instanceof ServerBlockEntity serverBlockEntity) {
+            // Loop through each drive in the server
+            for (int i = 0; i < (ServerBlockEntity.SLOT_COUNT); i++) {
+                ItemStack drive = serverBlockEntity.inventory.getStackInSlot(i);
+                // you need to figure a way around not being able to access the methods
+                // the problem is, the drive variable is of type ItemStack
+                // which means you can only access the methods and properties of the ItemStack
+                // somehow, you need to access the methods of the HardDrive class instance
+            }
+        }
+        return null; // FOR DEBUG ONLY; DELETE THIS!!
     }
 
     @Override

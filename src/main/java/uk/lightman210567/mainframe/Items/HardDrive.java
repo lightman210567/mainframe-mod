@@ -12,11 +12,11 @@ public class HardDrive extends Item {
         super(properties);
     }
 
-    public static final int SIZE = 1;
+    public final int SIZE = 1;
 
     // Generate a random ID for the hard drive
-    private static final Random rand = new Random();
-    public static final int DRIVE_ID = rand.nextInt();
+    private final Random rand = new Random();
+    public final int DRIVE_ID = rand.nextInt();
 
     // Gets a list of all item stacks in the container
     // Takes the drive's ItemStack as an argument

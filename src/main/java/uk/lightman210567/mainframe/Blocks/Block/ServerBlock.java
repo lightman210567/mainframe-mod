@@ -58,6 +58,23 @@ public class ServerBlock extends Block implements EntityBlock {
         }
     }
 
+    // This method will get the total amount of storage slots in the server
+    // pos and level are supplied by the player interraction
+    // drives is an ArrayList of all drive ItemStacks in the server
+    public int getServerSize(BlockPos pos, Level level, ArrayList<ItemStack> drives) {
+        int serverSize = 0;
+        if (level.getBlockEntity(pos) instanceof ServerBlockEntity serverBlockEntity) {
+            for (int i = 0; i < ServerBlockEntity.SLOT_COUNT; i++) {
+                Item drive = serverBlockEntity.inventory.getStackInSlot(i).getItem();
+                if (drive instanceof HardDrive hardDriveItem) {
+                    serverSize = serverSize + hardDriveItem.SIZE;
+                }
+            }
+            return serverSize;
+        }
+        return 0;
+    }
+
     // This method will get the combined inventory of the server
     // It takes the position of the server block and the level as parameters
     // these parameters should come from a player interaction further upstream
@@ -75,7 +92,7 @@ public class ServerBlock extends Block implements EntityBlock {
                 // Makes sure the item is an instance of HardDrive
                 Item drive = serverBlockEntity.inventory.getStackInSlot(i).getItem();
                 if (drive instanceof HardDrive hardDriveItem) {
-                    
+
                 }
             }
         }

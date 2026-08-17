@@ -1,9 +1,11 @@
 package uk.lightman210567.mainframe.Blocks.Block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +19,7 @@ import uk.lightman210567.mainframe.Blocks.Entity.ServerBlockEntity;
 import uk.lightman210567.mainframe.Items.HardDrive;
 import uk.lightman210567.mainframe.Items.ModItems;
 import uk.lightman210567.mainframe.Mainframe;
+import uk.lightman210567.mainframe.Utility.InventoryReturnHelper;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -58,16 +61,22 @@ public class ServerBlock extends Block implements EntityBlock {
     // This method will get the combined inventory of the server
     // It takes the position of the server block and the level as parameters
     // these parameters should come from a player interaction further upstream
-    public LinkedHashMap<ItemStack, Integer> getServerInventory(BlockPos pos, Level level) {
+    public InventoryReturnHelper getServerInventory(BlockPos pos, Level level) {
         // Checks the block has an instance of the server block entity
         if (level.getBlockEntity(pos) instanceof ServerBlockEntity serverBlockEntity) {
+            int combinedSize;
+
+            LinkedHashMap<ItemStack, Integer> serverMap = new LinkedHashMap<>();
+            NonNullList<ItemStack> serverInventory = NonNullList.withSize();
+
             // Loop through each drive in the server
             for (int i = 0; i < (ServerBlockEntity.SLOT_COUNT); i++) {
-                ItemStack drive = serverBlockEntity.inventory.getStackInSlot(i);
-                // you need to figure a way around not being able to access the methods
-                // the problem is, the drive variable is of type ItemStack
-                // which means you can only access the methods and properties of the ItemStack
-                // somehow, you need to access the methods of the HardDrive class instance
+                // Gets the drive item and its methods/properties from the HardDrive class
+                // Makes sure the item is an instance of HardDrive
+                Item drive = serverBlockEntity.inventory.getStackInSlot(i).getItem();
+                if (drive instanceof HardDrive hardDriveItem) {
+                    
+                }
             }
         }
         return null; // FOR DEBUG ONLY; DELETE THIS!!

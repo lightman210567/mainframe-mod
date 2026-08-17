@@ -84,8 +84,10 @@ public class ServerBlock extends Block implements EntityBlock {
             ArrayList<ItemStack> drives = getDisksInServer(pos, level);
             int combinedSize = getServerSize(pos, level, drives);
 
+            // Variables to be passed to the InventoryReturnHelper
             LinkedHashMap<Integer, Integer> serverMap = new LinkedHashMap<>();
             NonNullList<ItemStack> serverInventory = NonNullList.withSize(combinedSize, ItemStack.EMPTY);
+            LinkedHashMap<Integer, Integer> driveAddressMap = new LinkedHashMap<>();
 
             // Initialised the address prefix at 0
             // This gets added to the value of j in the for loop
@@ -98,6 +100,16 @@ public class ServerBlock extends Block implements EntityBlock {
                 // Makes sure the item is an instance of HardDrive
                 ItemStack drive = serverBlockEntity.inventory.getStackInSlot(i);
                 if (drive.getItem() instanceof HardDrive hardDriveItem) {
+
+                    // If the start address is 0, add it to the drive address map
+                    // If not 0, then add one to the address
+                    // This will ensure that two drives do not have overlapping addresses
+                    // E.G. if drive A finished at address 40, we want drive B to start at 41
+                    if (addressPrefix == 0) {
+                        driveAddressMap.put(hardDriveItem.DRIVE_ID, 0);
+                    } else {
+                        driveAddressMap.put(hardDriveItem.DRIVE_ID, (addressPrefix + 1));
+                    }
 
                     // Loop through each item in the hard drive
                     for (int j = 0; j < hardDriveItem.SIZE; j++) {
@@ -116,7 +128,7 @@ public class ServerBlock extends Block implements EntityBlock {
             }
             // Loops are finished by this point
             // Handle return logic here
-            return new InventoryReturnHelper(serverInventory, serverMap);
+            return new InventoryReturnHelper(serverInventory, serverMap, driveAddressMap);
         }
         return null; // only runs if the block is NOT an instance of ServerBlockEntity
     }

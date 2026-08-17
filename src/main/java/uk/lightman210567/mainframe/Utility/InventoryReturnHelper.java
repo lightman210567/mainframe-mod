@@ -7,9 +7,9 @@ import java.util.LinkedHashMap;
 
 public class InventoryReturnHelper {
     public final NonNullList<ItemStack> inventory;
-    public final LinkedHashMap<ItemStack, Integer> map;
+    public final LinkedHashMap<Integer, Integer> map; // Maps inventory slot to drive ID
 
-    public InventoryReturnHelper(NonNullList<ItemStack> inventory, LinkedHashMap<ItemStack, Integer> map) {
+    public InventoryReturnHelper(NonNullList<ItemStack> inventory, LinkedHashMap<Integer, Integer> map) {
         this.inventory = inventory;
         this.map = map;
     }

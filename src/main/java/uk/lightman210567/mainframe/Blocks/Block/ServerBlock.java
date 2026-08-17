@@ -59,7 +59,7 @@ public class ServerBlock extends Block implements EntityBlock {
     }
 
     // This method will get the total amount of storage slots in the server
-    // pos and level are supplied by the player interraction
+    // pos and level are supplied by the player interaction
     // drives is an ArrayList of all drive ItemStacks in the server
     public int getServerSize(BlockPos pos, Level level, ArrayList<ItemStack> drives) {
         int serverSize = 0;
@@ -81,22 +81,44 @@ public class ServerBlock extends Block implements EntityBlock {
     public InventoryReturnHelper getServerInventory(BlockPos pos, Level level) {
         // Checks the block has an instance of the server block entity
         if (level.getBlockEntity(pos) instanceof ServerBlockEntity serverBlockEntity) {
-            int combinedSize;
+            ArrayList<ItemStack> drives = getDisksInServer(pos, level);
+            int combinedSize = getServerSize(pos, level, drives);
 
-            LinkedHashMap<ItemStack, Integer> serverMap = new LinkedHashMap<>();
-            NonNullList<ItemStack> serverInventory = NonNullList.withSize();
+            LinkedHashMap<Integer, Integer> serverMap = new LinkedHashMap<>();
+            NonNullList<ItemStack> serverInventory = NonNullList.withSize(combinedSize, ItemStack.EMPTY);
+
+            // Initialised the address prefix at 0
+            // This gets added to the value of j in the for loop
+            // In order to determine the slot that the ItemStack gets added to in the serverInventory
+            int addressPrefix = 0;
 
             // Loop through each drive in the server
             for (int i = 0; i < (ServerBlockEntity.SLOT_COUNT); i++) {
                 // Gets the drive item and its methods/properties from the HardDrive class
                 // Makes sure the item is an instance of HardDrive
-                Item drive = serverBlockEntity.inventory.getStackInSlot(i).getItem();
-                if (drive instanceof HardDrive hardDriveItem) {
+                ItemStack drive = serverBlockEntity.inventory.getStackInSlot(i);
+                if (drive.getItem() instanceof HardDrive hardDriveItem) {
 
+                    // Loop through each item in the hard drive
+                    for (int j = 0; j < hardDriveItem.SIZE; j++) {
+                        int address = j + addressPrefix; // address is the index/slot to add the item stack at in the server inventory
+                        ItemStack stack = hardDriveItem.getItemFromDisk(drive, j);
+                        serverInventory.add(address, stack);
+
+                        serverMap.put(address, hardDriveItem.DRIVE_ID); // Maps this address slot to its drive ID
+                    }
+
+                    // This gets executed AFTER the hard drive item loop
+                    // This will bump the address prefix by the number of slots in the hard drive
+                    // Giving the next available address space that can be used by the next drive
+                    addressPrefix += hardDriveItem.SIZE;
                 }
             }
+            // Loops are finished by this point
+            // Handle return logic here
+            return new InventoryReturnHelper(serverInventory, serverMap);
         }
-        return null; // FOR DEBUG ONLY; DELETE THIS!!
+        return null; // only runs if the block is NOT an instance of ServerBlockEntity
     }
 
     @Override

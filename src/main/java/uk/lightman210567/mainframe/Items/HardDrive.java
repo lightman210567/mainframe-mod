@@ -27,6 +27,16 @@ public class HardDrive extends Item {
         return items;
     }
 
+    // A method to get a copy of the ItemStack from a given index in the inventory
+    // This will NOT remove the item from the inventory
+    // Takes an integer "index" as a parameter, which is the index to get the stack from
+    // Takes the drive's ItemStack as an argument
+    public ItemStack getItemFromDisk(ItemStack drive, int index) {
+        ItemStackContainer container = new ItemStackContainer(drive, SIZE);
+        ItemStack stack = container.getItem(index);
+        return stack;
+    }
+
     // A method to store the given item stack into the hard drive item
     // stack is the stack to store into the drive
     // drive is the ItemStack of the hard drive to store into

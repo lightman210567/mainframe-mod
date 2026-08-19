@@ -9,6 +9,7 @@ import uk.lightman210567.mainframe.Blocks.ModBlockEntities;
 import uk.lightman210567.mainframe.Blocks.ModBlocks;
 import uk.lightman210567.mainframe.Blocks.ModBlockItems;
 import uk.lightman210567.mainframe.Items.ModItems;
+import uk.lightman210567.mainframe.Menu.ModMenus;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Mainframe.MODID)
@@ -26,5 +27,6 @@ public class Mainframe {
         ModBlockItems.registerBlockItems(modEventBus);
         ModBlockEntities.registerBlockEntities(modEventBus);
         ModItems.registerItems(modEventBus);
+        ModMenus.registerMenus(modEventBus);
     }
 }

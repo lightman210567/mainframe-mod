@@ -2,8 +2,10 @@ package uk.lightman210567.mainframe.Menu;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import uk.lightman210567.mainframe.Mainframe;
 
@@ -12,6 +14,11 @@ public class ModMenus {
     public static final DeferredRegister<MenuType<?>> MOD_MENU_TYPES = DeferredRegister.create(BuiltInRegistries.MENU, Mainframe.MODID);
 
     // Register Menu Types here
+    // Register the INTERFACE_ITEM_MENU
+    public static final DeferredHolder<MenuType<?>, MenuType<InterfaceItemMenu>> INTERFACE_ITEM_MENU = MOD_MENU_TYPES.register(
+            "interface_item_menu",
+            () -> new MenuType<>(InterfaceItemMenu::new, FeatureFlags.DEFAULT_FLAGS)
+    );
     // END MENU TYPE REGISTRY
 
     public static void registerMenus(IEventBus modEventBus) {
